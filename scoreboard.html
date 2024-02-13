@@ -1,0 +1,159 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        border: 2px solid black;
+        width: 60%;
+        height: 40vh;
+        border-radius: 40px;
+        margin: 15% 18%;
+        background-color: #106b50;
+    }
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .score{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-top: -20px;
+        font-size: 30px;
+    }
+    .btns{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    #btn1{
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: blue;
+    }
+    #btn2{
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: green;
+    }
+    #btnReset{
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: red;
+    }
+    #race{
+        gap: 30px;
+    }
+    pre{
+      display: none;
+    }
+    #p2score{
+      margin-left: 20px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>Score Keeper</h1>
+            <div class="score">
+                <p id="p1score">0 <pre id="p1">Winner!</pre></p>
+                <p>to</p>
+                <p id="p2score">0 <pre id="p2">Winner!</pre></p>
+            </div>
+            <p class="p1">Use the buttons below to keep scores</p>
+            <p>Race:
+              <select name="race" id="race">
+              <option value="5">5</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+              <option value="12">12</option>
+            </select>
+          </p>
+            <div class="btns">
+                <button id="btn1">+Player one</button>
+                <button id="btn2">+Player two</button>
+                <button id="btnReset">Reset</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+// button1
+  const p1score = document.querySelector('#p1score');
+  const btn1 = document.querySelector('#btn1');
+  const race = document.querySelector('#race');
+  let x = 0;
+  const p1 = document.querySelector('#p1')
+
+
+
+  function newScore1() {
+    x++;
+    if(p1score.innerText == race.value-1){
+      // alert('Player 1 wins')
+      p1.style.display  = 'flex'
+      disablebtn();
+    }
+    p1score.innerText = x;
+
+  }
+
+  btn1.addEventListener('click', newScore1);
+
+
+// button2
+  const p2score = document.querySelector('#p2score');
+  const btn2 = document.querySelector('#btn2');
+  let y = 0;
+  const p2 = document.querySelector('#p2')
+
+  function newScore2() {
+    y++;
+    if(p2score.innerText == race.value-1){
+      p2.style.display  = 'flex'
+      disablebtn();
+    }
+    p2score.innerText = y;
+  }
+  btn2.addEventListener('click', newScore2);
+
+
+//   reset button
+  const reset = document.querySelector('#btnReset')
+  reset.addEventListener('click', () =>{
+    x = 0;
+    p1score.innerText = x.toString();
+    y= 0;
+    p2score.innerText = y.toString();
+    enablebtn();
+    p1.style.display  = 'none'
+    p2.style.display  = 'none'
+  })
+
+  // disable buttons
+  function disablebtn(){
+    btn1.disabled = true;
+    btn2.disabled = true;
+  }
+
+  // enable buttons
+  function enablebtn(){
+    btn1.disabled = false;
+    btn2.disabled = false;
+  }
+    </script>
+</body>
+</html>
